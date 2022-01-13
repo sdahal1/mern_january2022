@@ -17,14 +17,28 @@ const PetForm = (props) => {
                     <label htmlFor="">Name: </label>
                     {/*Step 2- attach an onchange event to the input and use the setter of the state variabel to update the state variable to be the value stored in the input */}
                     <input type="text" name="" id="" className="form-control" onChange= {(e)=> setName(e.target.value)} />
+
+                    {
+                        name.length < 2
+                            ?<p className="text-danger">Name must be at least 2 characters. Right now, name's length is {name.length}</p>
+                            :""
+                    }
+
+                    
                 </div>
                 <div className="form-group">
                     <label htmlFor="">Age: </label>
                     <input type="number" name="" id="" className="form-control" onChange= {(e)=> setAge(e.target.value)} />
+                    {
+                        age < 0 || age > 100
+                        ?<p className="text-danger">Age must be between 0-100. Age cant be greater than 100 we dont want to break your pet by accident</p>
+                        : ""
+
+                    }
                 </div>
                 <div className="form-group">
                     <label htmlFor="">Breed: </label>
-                    <input type="text" name="" id="" className="form-control" onChange= {(e)=> setAge(e.target.value)} />
+                    <input type="text" name="" id="" className="form-control" onChange= {(e)=> setBreed(e.target.value)} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="">Hair length: </label>

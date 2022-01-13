@@ -71,3 +71,15 @@ console.log(mergeSort(arr1))
 
 
 
+
+
+
+
+
+
+[4,8,2,5,9,0,1,12,-1]
+//select the pivot index to be 0 and pivot value to be arr[0]
+//iterate from index 1 and look for how many values are less than 4
+    //whenever you find a value less than 4, increment the count 
+
+
