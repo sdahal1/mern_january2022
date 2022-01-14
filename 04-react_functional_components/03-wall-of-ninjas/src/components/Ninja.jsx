@@ -78,7 +78,7 @@ const Ninja = (props) =>{
                             <h1>{ninja.ninjaName}- Idx # {i}</h1>
                             <p><img src={ninja.imageUrl} alt="" width= "100px"/></p>
                             <p>Favorite color: {ninja.favColor}</p>
-                            <p><input type="checkbox" name="" id="" onClick = {(e)=>toggleGraduation(i)}/>Graduate</p>
+                            <p><input type="checkbox" name="" id="" onClick = {()=>toggleGraduation(i)}/>Graduate</p>
                         </div>
                     )
                 })
