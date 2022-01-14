@@ -11,15 +11,15 @@ const Ninja = (props) =>{
         <form>
             <div className="form-group">
                 <label htmlFor="">Ninja name:</label>
-                <input type="text" name="" id="" className="form-control" />
+                <input type="text" name="" id="" className="form-control" onChange = {(e)=>setNinjaName(e.target.value)} />
             </div>
             <div className="form-group">
                 <label htmlFor="">Image Url:</label>
-                <input type="text" name="" id="" className="form-control" />
+                <input type="text" name="" id="" className="form-control" onChange = {(e)=>setImageUrl(e.target.value)} />
             </div>
             <div className="form-group">
                 <label htmlFor="">Favorite Color:</label>
-                <input type="text" name="" id="" className="form-control" />
+                <input type="text" name="" id="" className="form-control" onChange = {(e)=>setFavColor(e.target.value)}/>
             </div>
             <input type="submit" value="Create Ninja!" />
         </form>
