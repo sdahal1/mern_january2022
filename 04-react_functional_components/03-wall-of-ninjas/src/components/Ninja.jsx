@@ -7,8 +7,15 @@ const Ninja = (props) =>{
     let [favColor, setFavColor ] = useState("");
 
 
+    const createNinja = (e)=>{
+        e.preventDefault(); //the default behavior of a form when submitting is to reload the page and we are prventing that from happening b/c we don't want the page to reload
+        console.log("submitted the form!")
+        console.log(ninjaName,imageUrl, favColor)
+    }
+
+
     return (
-        <form>
+        <form onSubmit = {createNinja}>
             <div className="form-group">
                 <label htmlFor="">Ninja name:</label>
                 <input type="text" name="" id="" className="form-control" onChange = {(e)=>setNinjaName(e.target.value)} />
@@ -23,6 +30,8 @@ const Ninja = (props) =>{
             </div>
             <input type="submit" value="Create Ninja!" />
         </form>
+
+
     )
 }
 
