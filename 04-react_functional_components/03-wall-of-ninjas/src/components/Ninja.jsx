@@ -11,6 +11,8 @@ const Ninja = (props) =>{
         e.preventDefault(); //the default behavior of a form when submitting is to reload the page and we are prventing that from happening b/c we don't want the page to reload
         console.log("submitted the form!")
         console.log(ninjaName,imageUrl, favColor)
+        let ninjaObj = {ninjaName, imageUrl, favColor}
+        console.log(ninjaObj);
     }
 
 
