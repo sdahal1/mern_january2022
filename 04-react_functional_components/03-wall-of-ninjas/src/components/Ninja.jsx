@@ -6,6 +6,9 @@ const Ninja = (props) =>{
     let [imageUrl, setImageUrl ] = useState("");
     let [favColor, setFavColor ] = useState("");
 
+    // let listOfNinjas = [];
+    //create a state variable to store every ninjas that was submitted from the from
+    let [listOfNinjas, setListOfNinjas] = useState([]);
 
     const createNinja = (e)=>{
         e.preventDefault(); //the default behavior of a form when submitting is to reload the page and we are prventing that from happening b/c we don't want the page to reload
@@ -13,6 +16,9 @@ const Ninja = (props) =>{
         console.log(ninjaName,imageUrl, favColor)
         let ninjaObj = {ninjaName, imageUrl, favColor}
         console.log(ninjaObj);
+
+        setListOfNinjas([...listOfNinjas,ninjaObj])
+
     }
 
 
