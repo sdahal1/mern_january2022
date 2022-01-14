@@ -23,21 +23,43 @@ const Ninja = (props) =>{
 
 
     return (
-        <form onSubmit = {createNinja}>
-            <div className="form-group">
-                <label htmlFor="">Ninja name:</label>
-                <input type="text" name="" id="" className="form-control" onChange = {(e)=>setNinjaName(e.target.value)} />
-            </div>
-            <div className="form-group">
-                <label htmlFor="">Image Url:</label>
-                <input type="text" name="" id="" className="form-control" onChange = {(e)=>setImageUrl(e.target.value)} />
-            </div>
-            <div className="form-group">
-                <label htmlFor="">Favorite Color:</label>
-                <input type="text" name="" id="" className="form-control" onChange = {(e)=>setFavColor(e.target.value)}/>
-            </div>
-            <input type="submit" value="Create Ninja!" />
-        </form>
+        <>
+            <form onSubmit = {createNinja}>
+                <div className="form-group">
+                    <label htmlFor="">Ninja name:</label>
+                    <input type="text" name="" id="" className="form-control" onChange = {(e)=>setNinjaName(e.target.value)} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="">Image Url:</label>
+                    <input type="text" name="" id="" className="form-control" onChange = {(e)=>setImageUrl(e.target.value)} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="">Favorite Color:</label>
+                    <input type="text" name="" id="" className="form-control" onChange = {(e)=>setFavColor(e.target.value)}/>
+                </div>
+                <input type="submit" value="Create Ninja!" />
+            </form>
+            <hr />
+            <h3>Here are our list of ninjas!</h3>
+
+            {
+                listOfNinjas.map((ninja)=>{
+                    return (
+                        <div style = {{border: "1px solid black", backgroundColor: ninja.favColor, display: "inline-block"}}>
+                            <h1>{ninja.ninjaName}</h1>
+                            <p><img src={ninja.imageUrl} alt="" width= "100px"/></p>
+                            <p>Favorite color: {ninja.favColor}</p>
+                        </div>
+                    )
+                })
+            }
+
+
+            {/* {% for ninja in listofninjas %}
+                {{ninja.ninjaName}}
+            {% endfor %} */}
+
+        </>
 
 
     )
