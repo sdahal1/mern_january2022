@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import styles from './Ninja.module.css';
 
 const Ninja = (props) =>{
     //creating state variable(s) to keep track of information collected on the form
@@ -37,6 +38,7 @@ const Ninja = (props) =>{
         let [...copyOfListOfNinjas] = listOfNinjas;
         console.log("here is the list of ninjas copy->",copyOfListOfNinjas )
 
+        //update the graduation status of the student to be the opposite of whatever it currently is (true->false or false->true)
         copyOfListOfNinjas[idx].graduated = !copyOfListOfNinjas[idx].graduated  
 
         console.log("here is the list of ninjas copy after updating it->",copyOfListOfNinjas )
@@ -74,7 +76,7 @@ const Ninja = (props) =>{
             {
                 listOfNinjas.map((ninja, i)=>{
                     return (
-                        <div key = {i} style = {{border: "1px solid black", backgroundColor: ninja.favColor, display: "inline-block", textDecoration: ninja.graduated? 'line-through': 'none'}}>
+                        <div className = {styles.ninja} key = {i} style = {{backgroundColor: ninja.favColor, textDecoration: ninja.graduated? 'line-through': 'none'}}>
                             <h1>{ninja.ninjaName}- Idx # {i}</h1>
                             <p><img src={ninja.imageUrl} alt="" width= "100px"/></p>
                             <p>Favorite color: {ninja.favColor}</p>
