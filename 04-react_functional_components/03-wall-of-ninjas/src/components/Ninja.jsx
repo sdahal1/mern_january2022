@@ -1,6 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 const Ninja = (props) =>{
+    //creating state variable(s) to keep track of information collected on the form
+    let [ninjaName, setNinjaName ] = useState("");
+    let [imageUrl, setImageUrl ] = useState("");
+    let [favColor, setFavColor ] = useState("");
+
+
     return (
         <form>
             <div className="form-group">
