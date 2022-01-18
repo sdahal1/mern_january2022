@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-const CryptoCoinsUsingFetch = ()=>{
+const PokemonHint = ()=>{
 
     //create a state variable to store the array of coins inside so that we can loop through this array and display each coin on the page
     let [listOfCoins, setListOfCoins] = useState([])
@@ -8,7 +8,7 @@ const CryptoCoinsUsingFetch = ()=>{
     const getCoins = ()=>{
         console.log("you clicked on that button!")
         //fetch is a function that accepts an api endpoint (some link that gets us data from an api) and it returns a promise. What this means is that the response we get back from the api using fetch will arrive to our application in an undetermined amount of time. This is called a promise. A Promise is a pattern where the eventual response (and how long it will take to receive it) is not known. 
-        fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false")
+        fetch("https://pokeapi.co/api/v2/pokemon?limit=1000")
         //.then means what to do when we eventually get the response back
         .then(response=>{
             return response.json() //convert the respone into json, which is something that javascript can understand
@@ -36,12 +36,11 @@ const CryptoCoinsUsingFetch = ()=>{
             <p><button onClick = {getCoins}>Click to get crypto coins showing</button></p>
 
             {
-                listOfCoins.map((coinObj, i)=>{
+                listOfCoins.results.map((coinObj, i)=>{
                     return (
                         <div style = {{border: "1px solid black"}}>
                             <h3>{coinObj.name}</h3>
-                            <p>Price: {coinObj.current_price}</p>
-                            <img src={coinObj.image} alt="" />
+                            
                         </div>
                     )
                 })
@@ -51,4 +50,4 @@ const CryptoCoinsUsingFetch = ()=>{
 }
 
 
-export default CryptoCoinsUsingFetch;
+export default PokemonHint;
