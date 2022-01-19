@@ -6,6 +6,8 @@ const CryptoCoinsUsingAxiosAndUseEffect = ()=>{
     //create a state variable to store the array of coins inside so that we can loop through this array and display each coin on the page
     let [listOfCoins, setListOfCoins] = useState([])
 
+    let [clicked, setClicked] = useState(false)
+
     //useEffect is used to tell the application what code to run initially upon the initial render of the component only. useEffect() takes in a callback function. 
     //A callback function is a function that is given as an input to another function. useEffect will run this call back function on the initial render of the component and thats it (unless otherwise indicated)
     useEffect(()=>{
@@ -20,7 +22,7 @@ const CryptoCoinsUsingAxiosAndUseEffect = ()=>{
         .catch(err =>{
             console.log("errorrr!!!-->", err)
         })
-    }, []) //<--if this dependency array is empty, it is saying to only run the callback function inside of useEffect once on the first render of the component only.
+    }, [clicked]) //<--if this dependency array is empty, it is saying to only run the callback function inside of useEffect once on the first render of the component only.
 
     
 
@@ -30,6 +32,7 @@ const CryptoCoinsUsingAxiosAndUseEffect = ()=>{
     return (
         <>
             <h3>Hello from crypto component</h3>
+            <button onClick = {()=>setClicked(!clicked)}>Get new updated info!!</button>
 
             {
                 listOfCoins.map((coinObj, i)=>{
