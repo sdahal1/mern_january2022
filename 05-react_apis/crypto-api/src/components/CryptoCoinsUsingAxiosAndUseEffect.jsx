@@ -8,6 +8,9 @@ const CryptoCoinsUsingAxiosAndUseEffect = ()=>{
 
     let [clicked, setClicked] = useState(false)
 
+    //state variable to keep track of search term thats being typed
+    let [searchTerm, setSearchTerm] = useState('')
+
     //useEffect is used to tell the application what code to run initially upon the initial render of the component only. useEffect() takes in a callback function. 
     //A callback function is a function that is given as an input to another function. useEffect will run this call back function on the initial render of the component and thats it (unless otherwise indicated)
     useEffect(()=>{
@@ -34,8 +37,12 @@ const CryptoCoinsUsingAxiosAndUseEffect = ()=>{
             <h3>Hello from crypto component</h3>
             <button onClick = {()=>setClicked(!clicked)}>Get new updated info!!</button>
 
+            <p>Search A Coin: <input onChange = {(e)=>setSearchTerm(e.target.value)} type="text" name="" id="" placeholder='Search...'/></p>
+
             {
-                listOfCoins.map((coinObj, i)=>{
+                listOfCoins.filter((coinObj,i)=>{
+                    return coinObj.name.toLowerCase().includes(searchTerm.toLowerCase())
+                }).map((coinObj, i)=>{
                     return (
                         <div key = {i} style = {{border: "1px solid black"}}>
                             <h3>{coinObj.name}</h3>
