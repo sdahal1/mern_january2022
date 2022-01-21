@@ -46,6 +46,19 @@ app.post("/api/quotes", (req,res)=>{
 })
 
 
+//update a quote
+app.put("/api/quotes/:idx",(req,res)=>{
+    //two parts to a put request--> which thing we want to update (idx) and what data we want to use to update it with (req.body)
+
+    quotes[req.params.idx] = req.body //update quotes array at specified index (coming from the route) with the form information
+
+    res.json({count: quotes.length, results: quotes })
+} )
+
+
+
+
+
 
 
 
