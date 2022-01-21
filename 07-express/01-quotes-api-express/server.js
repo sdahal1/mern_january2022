@@ -2,6 +2,10 @@ const express = require("express"); //require is a way of importing something in
 const app = express(); //create a variable called app--> this variable is an instance of express
 const port = 8000;
 
+//need these two lines below to be able to read and extract the information received from post requests
+app.use(express.json())
+app.use(express.urlencoded({extended:true})) //be able to read form information
+
 
 //this is what you did in flask
 // @app.route("/hello")
@@ -33,6 +37,18 @@ app.get("/api/quotes", (req,res)=>{
 app.get("/api/quotes/:idx", (req,res)=>{
     res.json({results: quotes[req.params.idx]})
 })
+
+//add a new quote
+app.post("/api/quotes", (req,res)=>{
+    console.log("req.body", req.body)
+    quotes.push(req.body) //push the form information into the quotes array
+    res.json({count: quotes.length, results: quotes })
+})
+
+
+
+
+
 
 
 
