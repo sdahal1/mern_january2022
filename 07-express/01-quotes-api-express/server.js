@@ -24,6 +24,15 @@ app.get("/api/hello",(req,res)=>{
 } )
 
 
+//get all quotes
+app.get("/api/quotes", (req,res)=>{
+    res.json({count: quotes.length, results: quotes })
+})
+
+
+
+
+
 
 
 
