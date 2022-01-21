@@ -60,7 +60,7 @@ app.delete("/api/quotes/:idx", (req,res)=>{
     //you can use splice to remove somethign from an array
     quotes.splice(req.params.idx,1)
 
-    res.json({count: quotes.length, results: quotes })
+    res.json({counttttt: quotes.length, results: quotes })
 
 })
 
