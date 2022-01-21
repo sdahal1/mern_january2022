@@ -29,6 +29,13 @@ app.get("/api/quotes", (req,res)=>{
     res.json({count: quotes.length, results: quotes })
 })
 
+//get one quote by "id"
+app.get("/api/quotes/:idx", (req,res)=>{
+    res.json({results: quotes[req.params.idx]})
+})
+
+
+
 
 
 
@@ -39,4 +46,4 @@ app.get("/api/quotes", (req,res)=>{
 
 
 //this line is usually at the bottom
-app.listen( 8000, () => console.log(`Listening on port: ${port}`) );
+app.listen( port, () => console.log(`Listening on port: ${port}`) );
