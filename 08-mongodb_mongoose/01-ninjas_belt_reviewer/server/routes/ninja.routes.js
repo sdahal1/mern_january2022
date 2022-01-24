@@ -11,4 +11,9 @@ module.exports = (app)=>{
 
     app.get("/api/ninjas/:id", NinjaController.findOneNinja)
 
+    app.put("/api/ninjas/:id", NinjaController.updateNinja)
+    
+    app.delete("/api/ninjas/:id", NinjaController.deleteNinja)    
+    
+
 }
