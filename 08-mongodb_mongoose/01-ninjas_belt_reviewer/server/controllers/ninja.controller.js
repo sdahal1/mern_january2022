@@ -14,12 +14,13 @@ module.exports.findAllNinjas = (req, res) => {
 }
 
 
-// module.exports.findOneNinja = (req, res) => {
-//     Ninja.findOne()
-//     // User.findOne({ _id: req.params.id })
-//     //     .then(oneSingleUser => res.json({ user: oneSingleUser }))
-//     //     .catch(err => res.json({ message: 'Something went wrong', error: err }));
-// }
+module.exports.findOneNinja = (req, res) => {
+    Ninja.findOne({_id: req.params.id})
+        .then(singleNinja =>{
+           res.json({results: singleNinja}) 
+        })
+        .catch(err=> res.json({ message: 'Something went wrong', error: err }))
+}
 
 module.exports.createNewNinja = (req, res) => {
     console.log("REQ.BODY--->",req.body)
