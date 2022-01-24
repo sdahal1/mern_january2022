@@ -6,4 +6,6 @@ module.exports = (app)=>{
     //more routes here
     app.get("/api/ninjas", NinjaController.findAllNinjas)
 
+    app.post("/api/ninjas", NinjaController.createNewNinja)
+
 }
