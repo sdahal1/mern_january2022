@@ -2,7 +2,7 @@ const mongoose = require('mongoose'); //import mongoose
 
 const db_name = "ninjasdb";
 
-mongoose.connect(`mongodb+srv://root:root@${db_name}.klfpv.mongodb.net/ninjasdb?retryWrites=true&w=majority`, {
+mongoose.connect(`mongodb+srv://root:root@ninjasdb.klfpv.mongodb.net/${db_name}?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
