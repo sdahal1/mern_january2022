@@ -1,5 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios'
+import {
+    Link 
+  } from "react-router-dom";
 
 const AllNinjas = () => {
 
@@ -21,10 +24,11 @@ const AllNinjas = () => {
             <h3>All the Ninjas</h3>
             {allNinjas.map((ninjaObj, i)=>{
                 return(
-                    <div style = {{border: "1px solid black"}}>
+                    <div key={i} style = {{border: "1px solid black"}}>
                         <h4>{ninjaObj.firstName} {ninjaObj.lastName}</h4>
                         <p>Number of belts: {ninjaObj.numBelts}</p>
-
+                        <p>Id: {ninjaObj._id}</p>
+                        <p><Link to={`/ninjas/${ninjaObj._id}`} className = "btn btn-info" >Details</Link></p>
                     </div>
                 )
             })}

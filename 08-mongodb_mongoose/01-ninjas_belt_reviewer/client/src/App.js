@@ -2,6 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import NewNinjaForm from './components/NewNinjaForm';
 import AllNinjas from './components/AllNinjas';
+import OneNinja from './components/OneNinja';
+
 import {
   BrowserRouter, //tells the application we can enable routing
   Switch,
@@ -25,6 +27,10 @@ function App() {
             <NewNinjaForm></NewNinjaForm>
             <hr />
             <AllNinjas></AllNinjas>
+          </Route>
+
+          <Route exact path = "/ninjas/:id">
+            <OneNinja></OneNinja>
           </Route>
 
         </Switch>
