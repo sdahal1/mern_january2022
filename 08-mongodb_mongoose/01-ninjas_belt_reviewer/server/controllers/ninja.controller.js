@@ -27,7 +27,6 @@ module.exports.findOneNinja = (req, res) => {
 
 module.exports.createNewNinja = (req, res) => {
     console.log("trying to create ninja!")
-
     console.log("REQ.BODY--->",req.body)
     Ninja.create(req.body) //req.body represents the form info
         .then(newlyCreatedNinja =>{

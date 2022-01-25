@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import NewNinjaForm from './components/NewNinjaForm';
+import AllNinjas from './components/AllNinjas';
 import {
   BrowserRouter, //tells the application we can enable routing
   Switch,
@@ -22,6 +23,8 @@ function App() {
         <Switch>
           <Route exact path= "/">
             <NewNinjaForm></NewNinjaForm>
+            <hr />
+            <AllNinjas></AllNinjas>
           </Route>
 
         </Switch>
