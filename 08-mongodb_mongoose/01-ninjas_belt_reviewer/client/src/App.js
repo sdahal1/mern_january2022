@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import React, {useState} from 'react';
 import NewNinjaForm from './components/NewNinjaForm';
 import AllNinjas from './components/AllNinjas';
 import OneNinja from './components/OneNinja';
@@ -14,6 +15,8 @@ import {
 
 
 function App() {
+  let [newNinjaAdded, setNewNinjaAdded] = useState(false)
+
   return (
     <BrowserRouter>
       <div className="App container">
@@ -21,13 +24,13 @@ function App() {
         <Link to = "/new" className='btn btn-secondary'>Add Ninja</Link>
         <Switch>
           <Route exact path= "/">
-            
+            <NewNinjaForm newNinjaAdded={newNinjaAdded} setNewNinjaAdded= {setNewNinjaAdded} ></NewNinjaForm>
             <hr />
-            <AllNinjas></AllNinjas>
+            <AllNinjas newNinjaAdded={newNinjaAdded}></AllNinjas>
           </Route>
-          <Route exact path = "/new">
-            <NewNinjaForm></NewNinjaForm>
-          </Route>
+          {/* <Route exact path = "/new">
+            
+          </Route> */}
 
           <Route exact path = "/ninjas/:id">
             <OneNinja></OneNinja>
