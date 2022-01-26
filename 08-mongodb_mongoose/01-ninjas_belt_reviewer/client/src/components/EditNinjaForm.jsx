@@ -1,22 +1,20 @@
 import React, {useState, useEffect} from 'react';
 import { useParams } from "react-router";
 import axios from 'axios';
+import { useHistory } from "react-router-dom";
 
 const EditNinjaForm = () => {
-
-    //state variables for each info collected from form
-    let [firstName, setFirstName] = useState("")
-    let [lastName, setLastName] = useState("")
-    let [numBelts, setNumBelts] = useState(0)
-    let [isVeteran, setIsVeteran] = useState(false)
-
 
     //get the route param info containing the id of the object we want to edit
     const { id } = useParams();
 
     //state variable to save the info i get back from api about one ninja (or one object)
-    let [ninjaInfo, setNinjaInfo] = useState({})
-
+    let [ninjaInfo, setNinjaInfo] = useState({
+        firstName:"",
+        lastName:"",
+        numBelts:0,
+        isVeteran: false
+    })
 
     useEffect(()=>{
         //make an axios call to get information from the backend about one ninja using the api endpoint to get one ninja
@@ -28,43 +26,59 @@ const EditNinjaForm = () => {
         })
         .catch(err=> console.log(err))
     },[])
+
+    //initialize useHistory so we can redirect after the update of the form
+    const history = useHistory();
+
+    //changehandler that will be called each time the form info is being changed
+    const changeHandler = (e)=>{
+        console.log("changed in form detected!!")
+        if(e.target.type === "checkbox"){
+            setNinjaInfo({
+                ...ninjaInfo,
+                [e.target.name]: e.target.checked
+            })
+        }else{
+            setNinjaInfo({
+                ...ninjaInfo,
+                [e.target.name]: e.target.value
+            })
+
+        }
+    }
     
 
 
-    const createNinjaSubmitHandler = (e)=>{
+    const updateNinjaSubmitHandler = (e)=>{
         e.preventDefault();
-        // console.log(firstName, lastName, numBelts, isVeteran)
-
-        // //put the info from form into an object
-        // let formInfoObj = {firstName, lastName, numBelts, isVeteran};
-
-        // axios.post("http://localhost:8000/api/ninjas", formInfoObj)
-        //     .then(res=>{
-        //         console.log("response after posting", res)
-        //     })
-        //     .catch(err=>console.log("error in submitting post request",err))  
+        axios.put(`http://localhost:8000/api/ninjas/${id}`, ninjaInfo)
+            .then(res=>{
+                console.log("res after put request-->", res)
+                history.push("/")
+            })
+            .catch(err=>console.log(err))
 
     }
 
     return (
         <div>
             <h4>Edit Ninja Below</h4>
-            <form onSubmit = {createNinjaSubmitHandler}>
+            <form onSubmit = {updateNinjaSubmitHandler}>
                 <div className="form-group">
                     <label htmlFor="">First Name</label>
-                    <input onChange = {(e)=>{setFirstName(e.target.value)}} type="text" name="" id="" className="form-control" value={ninjaInfo.firstName}/>
+                    <input type="text" name="firstName" id="" className="form-control" value={ninjaInfo.firstName} onChange={changeHandler}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="">Last Name</label>
-                    <input onChange = {(e)=>{setLastName(e.target.value)}} type="text" name="" id="" className="form-control" value={ninjaInfo.lastName} />
+                    <input type="text" name="lastName" id="" className="form-control" value={ninjaInfo.lastName} onChange={changeHandler}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="">Number of Belts</label>
-                    <input onChange = {(e)=>{setNumBelts(e.target.value)}} type="number" name="" id="" className="form-control" value={ninjaInfo.numBelts} />
+                    <input type="number" name="numBelts" id="" className="form-control" value={ninjaInfo.numBelts} onChange={changeHandler} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="">Is Ninja a Veteran?</label>
-                    <input onChange = {(e)=>{setIsVeteran(e.target.checked)}} type="checkbox" name="" id="" className="form-checkbox" checked={ninjaInfo.isVeteran} />
+                    <input type="checkbox" name="isVeteran" id="" className="form-checkbox" checked={ninjaInfo.isVeteran} onChange={changeHandler} />
                 </div>
                 <input type="submit" value="Update Ninja!" className="btn btn-success mt-3" />
             </form>
