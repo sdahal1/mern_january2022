@@ -18,11 +18,15 @@ function App() {
     <BrowserRouter>
       <div className="App container">
         <h1>Ninjas Belt Reviewer</h1>
+        <Link to = "/new" className='btn btn-secondary'>Add Ninja</Link>
         <Switch>
           <Route exact path= "/">
-            <NewNinjaForm></NewNinjaForm>
+            
             <hr />
             <AllNinjas></AllNinjas>
+          </Route>
+          <Route exact path = "/new">
+            <NewNinjaForm></NewNinjaForm>
           </Route>
 
           <Route exact path = "/ninjas/:id">

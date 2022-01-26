@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
+import { useHistory } from "react-router-dom";
+
 
 const NewNinjaForm = () => {
 
@@ -10,6 +12,9 @@ const NewNinjaForm = () => {
     let [isVeteran, setIsVeteran] = useState(false)
 
     let [formErrors, setFormErrors] = useState({})
+
+
+    const history = useHistory();
 
     const createNinjaSubmitHandler = (e)=>{
         e.preventDefault();
@@ -27,6 +32,8 @@ const NewNinjaForm = () => {
                 if(res.data.error){ //validation errors happened
                     //res.data.error.errors contains an object that has my validation error messages for each input
                     setFormErrors(res.data.error.errors)
+                }else{
+                    history.push("/")
                 }
             })
             .catch(err=>console.log("error in submitting post request",err))  
