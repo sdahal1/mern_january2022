@@ -25,10 +25,12 @@ const AllNinjas = () => {
             {allNinjas.map((ninjaObj, i)=>{
                 return(
                     <div key={i} style = {{border: "1px solid black"}}>
-                        <h4>{ninjaObj.firstName} {ninjaObj.lastName}</h4>
+                        <h4><Link to={`/ninjas/${ninjaObj._id}`}>{ninjaObj.firstName} {ninjaObj.lastName}</Link></h4>
                         <p>Number of belts: {ninjaObj.numBelts}</p>
                         <p>Id: {ninjaObj._id}</p>
                         <p><Link to={`/ninjas/${ninjaObj._id}`} className = "btn btn-info" >Details</Link></p>
+                        <p><Link to={`/ninjas/edit/${ninjaObj._id}`} className = "btn btn-warning" >Edit</Link></p>
+
                     </div>
                 )
             })}

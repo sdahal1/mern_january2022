@@ -3,6 +3,7 @@ import './App.css';
 import NewNinjaForm from './components/NewNinjaForm';
 import AllNinjas from './components/AllNinjas';
 import OneNinja from './components/OneNinja';
+import EditNinjaForm from './components/EditNinjaForm';
 
 import {
   BrowserRouter, //tells the application we can enable routing
@@ -11,11 +12,6 @@ import {
   Link 
 } from "react-router-dom";
 
-
-/*
-
-when form submits, send post request using axios with teh form info to create something new
-*/
 
 function App() {
   return (
@@ -31,6 +27,10 @@ function App() {
 
           <Route exact path = "/ninjas/:id">
             <OneNinja></OneNinja>
+          </Route>
+
+          <Route exact path = "/ninjas/edit/:id">
+            <EditNinjaForm/>
           </Route>
 
         </Switch>
