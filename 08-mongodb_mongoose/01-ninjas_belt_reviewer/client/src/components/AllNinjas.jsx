@@ -7,6 +7,7 @@ import {
 const AllNinjas = () => {
 
     let [allNinjas, setAllNinjas] = useState([])
+    let [deleted, setDeleted] = useState(false)
 
 
     useEffect(()=>{
@@ -17,7 +18,17 @@ const AllNinjas = () => {
                 setAllNinjas(res.data.results)
             })
             .catch(err=> console.log("ERROR", err))
-    },[])
+    },[deleted])
+
+
+    const deleteNinja = (ninjaId)=>{
+        axios.delete(`http://localhost:8000/api/ninjas/${ninjaId}`)
+            .then(res=>{
+                console.log("res when deleting->", res)
+                setDeleted(!deleted)
+            })
+            .catch(err=> console.log("ERROR", err))
+    }
 
     return (
         <div>
@@ -28,8 +39,12 @@ const AllNinjas = () => {
                         <h4><Link to={`/ninjas/${ninjaObj._id}`}>{ninjaObj.firstName} {ninjaObj.lastName}</Link></h4>
                         <p>Number of belts: {ninjaObj.numBelts}</p>
                         <p>Id: {ninjaObj._id}</p>
-                        <p><Link to={`/ninjas/${ninjaObj._id}`} className = "btn btn-info" >Details</Link></p>
-                        <p><Link to={`/ninjas/edit/${ninjaObj._id}`} className = "btn btn-warning" >Edit</Link></p>
+                        <p>
+                            <Link to={`/ninjas/${ninjaObj._id}`} className = "btn btn-info" >Details</Link> | &nbsp; 
+                            <Link to={`/ninjas/edit/${ninjaObj._id}`} className = "btn btn-warning" >Edit</Link> | &nbsp;
+                            <button onClick = {()=>deleteNinja(ninjaObj._id)} className="btn btn-danger">Delete Ninja</button>
+                        </p>
+                        
 
                     </div>
                 )
