@@ -11,19 +11,21 @@ const NewNinjaForm = (props) => {
     let [numBelts, setNumBelts] = useState(null)
     let [isVeteran, setIsVeteran] = useState(false)
 
+    //state variable to store any validation errors coming from the backend after submitting the form
     let [formErrors, setFormErrors] = useState({})
 
-
+    //if you have form in separate route than allninjas, you can use history to redirect after form submits
     const history = useHistory();
 
     const createNinjaSubmitHandler = (e)=>{
-        e.preventDefault();
-        console.log(firstName, lastName, numBelts, isVeteran)
+        e.preventDefault(); //prevent the form from reloading the whole page
 
-        //put the info from form into an object
+        // console.log(firstName, lastName, numBelts, isVeteran)
+
+        //put the info from form into an object so that we can send one thing to the backend api
         let formInfoObj = {firstName, lastName, numBelts, isVeteran};
 
-        axios.post("http://localhost:8000/api/ninjas", formInfoObj)
+        axios.post("http://localhost:8000/api/ninjas", formInfoObj) //post request to our backend route in the ninja.routes.js file
             .then(res=>{
                 console.log("response after posting", res)
 
@@ -33,7 +35,10 @@ const NewNinjaForm = (props) => {
                     //res.data.error.errors contains an object that has my validation error messages for each input
                     setFormErrors(res.data.error.errors)
                 }else{
+                    //else if the form was filled out properly and it successfully created someone new, update the newNinjaAdded variable so that it triggers the allninjas component re-gather the new list of ninjas
                     props.setNewNinjaAdded(!props.newNinjaAdded)
+
+                    //if the form was in separate route than all ninjas component, then you can redirect to "/" after form submits using history.push("/")
                     // history.push("/")
                 }
             })

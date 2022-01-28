@@ -6,7 +6,7 @@ import {
 
 const AllNinjas = (props) => {
 
-    let [allNinjas, setAllNinjas] = useState([])
+    let [allNinjas, setAllNinjas] = useState([]) //create a state variable array to store all the ninjas we get back from api
     let [deleted, setDeleted] = useState(false)
 
 
@@ -18,14 +18,16 @@ const AllNinjas = (props) => {
                 setAllNinjas(res.data.results)
             })
             .catch(err=> console.log("ERROR", err))
-    },[deleted, props.newNinjaAdded ])
+    },[deleted, props.newNinjaAdded ]) //whenever the variables deleted or props.newNinjaAdded changes, it will re-run the useEffect() to get the new list of ninjas
 
-
+    //this deleteNinja function runs when the delete button is clicked and it will accept the id of the ninja we want to delete as an input
     const deleteNinja = (ninjaId)=>{
+
+        //axios delete request to the backend to delete a ninja by specified id
         axios.delete(`http://localhost:8000/api/ninjas/${ninjaId}`)
             .then(res=>{
                 console.log("res when deleting->", res)
-                setDeleted(!deleted)
+                setDeleted(!deleted) //change the variable deleted to a new value each time we delete. Whenever this variable changes its value, we can tell the useEffect to re-run the axios call to get the new list of all ninjas containing the list with one less ninja it
             })
             .catch(err=> console.log("ERROR", err))
     }

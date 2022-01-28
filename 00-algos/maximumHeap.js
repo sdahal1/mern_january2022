@@ -1,3 +1,6 @@
+//https://visualgo.net/en/heap
+
+
 class MaximumHeap{
     constructor(){
         this.values = [null];
@@ -28,13 +31,32 @@ class MaximumHeap{
         return this;
     }
 
+    extractMax(){
+        //swap the max value (idx 1) wih the last value (this.values.length-1)
+
+
+        //pop the array to remove the last (save this in a variable to return later at the end)
+        //poppedval = this.values.pop()
+        //calculate the left child index (current idx *2)
+        //calculate the right child index (current (idx *2) +1)
+
+        //while the value at current index is less than either (or) the left child value or right child value
+            //swap with the larger child
+
+            //recalculate where the current index is now at
+            //recalculate the children for the current index
+            //repeat
+
+        //return the popped value at the end
+    }
+
 
 }
 
 
 let heap1 = new MaximumHeap()
 
-heap1.insert(7).insert(5).insert(3).insert(-1).insert(6).insert(100).
+heap1.insert(7).insert(5).insert(3).insert(-1).insert(6).insert(100)
 
 console.log(heap1.values)
 

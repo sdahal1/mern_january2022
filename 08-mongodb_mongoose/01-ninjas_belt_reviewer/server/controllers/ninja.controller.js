@@ -32,7 +32,8 @@ module.exports.createNewNinja = (req, res) => {
         .then(newlyCreatedNinja =>{
             res.json({results: newlyCreatedNinja})
         })
-        .catch(err=> res.json({ message: 'Something went wrong', error: err }))
+        //if theres validation errors
+        .catch(err=> res.json({ message: 'Something went wrong', error: err })) 
 }
 
 

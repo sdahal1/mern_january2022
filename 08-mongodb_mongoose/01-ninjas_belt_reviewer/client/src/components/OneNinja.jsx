@@ -4,11 +4,11 @@ import axios from 'axios';
 import { useHistory } from "react-router-dom";
 
 const OneNinja = () => {
-    const { id } = useParams();
+    const { id } = useParams(); //store the id of the ninja coming in from the route
 
     const history = useHistory();//to redirect after deleting a ninja
 
-    const [ninjaDetails, setNinjaDetails] = useState({})
+    const [ninjaDetails, setNinjaDetails] = useState({}) //to store details about the ninja we requested details about from the api
 
     useEffect(()=>{
         axios.get(`http://localhost:8000/api/ninjas/${id}`)
@@ -25,7 +25,7 @@ const OneNinja = () => {
         axios.delete(`http://localhost:8000/api/ninjas/${id}`)
             .then(res=>{
                 console.log("response when deleting", res)
-                history.push("/")
+                history.push("/") //redirect to home page after deleting
             })
             .catch(err=>console.log(err))
     }
