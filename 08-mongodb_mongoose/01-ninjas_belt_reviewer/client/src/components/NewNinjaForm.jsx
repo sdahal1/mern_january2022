@@ -8,6 +8,7 @@ import MilitaryTechOutlinedIcon from '@mui/icons-material/MilitaryTechOutlined';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
+import io from 'socket.io-client';
 
 
 const NewNinjaForm = (props) => {
@@ -24,6 +25,13 @@ const NewNinjaForm = (props) => {
     //if you have form in separate route than allninjas, you can use history to redirect after form submits
     const history = useHistory();
 
+
+    const [socket] = useState(() => io(':8000')) //this line of code enables a client to connect to our server running on port 8000
+
+    // socket.on("new_connection", data=>{
+    //     console.log(data);
+    // } )
+
     const createNinjaSubmitHandler = (e)=>{
         e.preventDefault(); //prevent the form from reloading the whole page
 
@@ -36,12 +44,14 @@ const NewNinjaForm = (props) => {
             .then(res=>{
                 console.log("response after posting", res)
 
+
                 //if the res.data.results key is there, then form validations were valid
                 //if the res.data.error key is there, then form was not filled out properly 
                 if(res.data.error){ //validation errors happened
                     //res.data.error.errors contains an object that has my validation error messages for each input
                     setFormErrors(res.data.error.errors)
                 }else{
+                    socket.emit("added_new_ninja", res.data.results)
                     //else if the form was filled out properly and it successfully created someone new, update the newNinjaAdded variable so that it triggers the allninjas component re-gather the new list of ninjas
                     props.setNewNinjaAdded(!props.newNinjaAdded)
 
@@ -86,7 +96,7 @@ const NewNinjaForm = (props) => {
                     {/* <label htmlFor="">Number of Belts</label>
                     <input onChange = {(e)=>{setNumBelts(e.target.value)}} type="number" name="" id="" className="form-control" /> */}
                     <TextField 
-                        onChange = {(e)=>{setLastName(e.target.value)}} 
+                        onChange = {(e)=>{setNumBelts(e.target.value)}} 
                         style= {{width: "100%"}} 
                         id="outlined-basic" 
                         label="Number of Belts" 
